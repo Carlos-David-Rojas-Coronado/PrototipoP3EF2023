@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Seguridad.Vista;
-import Cuentas_Corrientes.Vista.frmMantenimientoTransaccionesCC;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
@@ -355,11 +354,6 @@ public class MdiSeguridad extends javax.swing.JFrame {
 
     private void mITansaccionesCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mITansaccionesCCActionPerformed
         // TODO add your handling code here:
-        frmMantenimientoTransaccionesCC ventana = new frmMantenimientoTransaccionesCC();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
     }//GEN-LAST:event_mITansaccionesCCActionPerformed
 
     /**

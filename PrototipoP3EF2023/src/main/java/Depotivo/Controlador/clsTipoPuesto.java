@@ -6,110 +6,95 @@
 //Se agrega todo el codigo para la parte del controlador del mantenimiento de lineas
 //Victor Josué Jerez Mijangos 9959-21-2081
 
-package Inventarios.Controlador;
+package Depotivo.Controlador;
 import java.util.List;
-import Inventarios.Modelo.daoTipoPuesto;
+import Depotivo.Modelo.daoTipoPuesto;
 /**
  *
  * @author visitante
  */
 public class clsTipoPuesto {
-    private int IdLineas;
-    private String NombreLineas;
-    private double PreciosLineas;
-    private String EstatusLineas;
-
-    public int getIdLineas() {
-        return IdLineas;
-    }
-
-    public void setIdLineas(int IdLineas) {
-        this.IdLineas = IdLineas;
-    }
-
-    public String getNombreLineas() {
-        return NombreLineas;
-    }
-
-    public void setNombreLineas(String NombreLineas) {
-        this.NombreLineas = NombreLineas;
-    }
-
-    public double getPreciosLineas() {
-        return PreciosLineas;
-    }
-
-    public void setPreciosLineas(double PreciosLineas) {
-        this.PreciosLineas = PreciosLineas;
-    }
-
-    public String getEstatusLineas() {
-        return EstatusLineas;
-    }
-
-    public void setEstatusLineas(String EstatusLineas) {
-        this.EstatusLineas = EstatusLineas;
-    }
-
-    public clsTipoPuesto(int IdLineas, String NombreLineas, double PreciosLineas) {
-        this.IdLineas = IdLineas;
-        this.NombreLineas = NombreLineas;
-        this.PreciosLineas = PreciosLineas;
-    }
-
-    public clsTipoPuesto(int IdLineas, String NombreLineas, double PreciosLineas, String EstatusLineas) {
-        this.IdLineas = IdLineas;
-        this.NombreLineas = NombreLineas;
-        this.PreciosLineas = PreciosLineas;
-        this.EstatusLineas = EstatusLineas;
-    }
-
-    public clsTipoPuesto(int IdLineas, String NombreLineas) {
-        this.IdLineas = IdLineas;
-        this.NombreLineas = NombreLineas;
-    }
-
-    public clsTipoPuesto(int IdLineas) {
-        this.IdLineas = IdLineas;
-    }
+    private int IdTipo;
+    private String NombrePuesto;
+    private int Salario;
 
     public clsTipoPuesto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public int getIdTipo() {
+        return IdTipo;
+    }
+
+    public void setIdTipo(int IdPuesto) {
+        this.IdTipo = IdPuesto;
+    }
+
+    public String getNombrePuesto() {
+        return NombrePuesto;
+    }
+
+    public void setNombrePuesto(String NombrePuesto) {
+        this.NombrePuesto = NombrePuesto;
+    }
+
+    public int getSalarios() {
+        return Salario;
+    }
+
+    public void setSalarios(int Salarios) {
+        this.Salario = Salarios;
+    }
+
+    public clsTipoPuesto(int IdPuesto, String NombrePuesto, int Salarios) {
+        this.IdTipo = IdPuesto;
+        this.NombrePuesto = NombrePuesto;
+        this.Salario = Salarios;
+    }
+
+    public clsTipoPuesto(int IdTipo, String NombrePuesto) {
+        this.IdTipo = IdTipo;
+        this.NombrePuesto = NombrePuesto;
+    }
+
+    public clsTipoPuesto(int IdTipo) {
+        this.IdTipo = IdTipo;
     }
 
     //Metodos de acceso a la capa controlador
-    public clsTipoPuesto getBuscarInformacionLineasPorNombre(clsTipoPuesto Lineas)
+    public clsTipoPuesto getBuscarInformacionPuestoPorNombre(clsTipoPuesto Puesto)
     {
-        daoTipoPuesto daolineas = new daoTipoPuesto();
-        return daolineas.consultaLineasPorNombre(Lineas);
+        daoTipoPuesto daopuesto = new daoTipoPuesto();
+        return daopuesto.consultaPuestosPorNombre(Puesto);
     }
-    public clsTipoPuesto getBuscarInformacionLineasPorId(clsTipoPuesto Lineas)
+    public clsTipoPuesto getBuscarInformacionPuestosPorId(clsTipoPuesto puesto)
     {
         daoTipoPuesto daolineas = new daoTipoPuesto();
-        return daolineas.consultaLineasPorId(Lineas);
+        return daolineas.consultaPuestosPorId(puesto);
     }
-    public List<clsTipoPuesto> getListadoLineas()
+    public List<clsTipoPuesto> getListadoPuestos()
     {
-        daoTipoPuesto daolineas = new daoTipoPuesto();
-        List<clsTipoPuesto> listadoLineas = daolineas.consultaLineas();
-        return listadoLineas;
+        daoTipoPuesto daotipo = new daoTipoPuesto();
+        List<clsTipoPuesto> listadoPuestos = daotipo.consultaPuesto();
+        return listadoPuestos;
     }
-    public int setBorrarLineas(clsTipoPuesto Lineas)
+    public int setBorrarPuestos(clsTipoPuesto Puestos)
     {
-        daoTipoPuesto daolineas = new daoTipoPuesto();
-        return daolineas.borrarLineas(Lineas);
+        daoTipoPuesto daopuesto = new daoTipoPuesto();
+        return daopuesto.borrarPuesto(Puestos);
     }
-    public int setIngresarLineas(clsTipoPuesto Lineas)
+    public int setIngresarPuestos(clsTipoPuesto Puestos)
     {
         daoTipoPuesto daolineas = new daoTipoPuesto();
-        return daolineas.ingresaLineas(Lineas);
+        return daolineas.ingresaPuesto(Puestos);
     }              
-    public int setModificarLineas(clsTipoPuesto Lineas)
+    public int setModificarPuestos(clsTipoPuesto Puestos)
     {
         daoTipoPuesto daolineas = new daoTipoPuesto();
-        return daolineas.actualizaLineas(Lineas);
+        return daolineas.actualizaPuesto(Puestos);
     }
 
-    public void add(List<clsTipoPuesto> Lineas) {
+    public void add(List<clsTipoPuesto> Puestos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

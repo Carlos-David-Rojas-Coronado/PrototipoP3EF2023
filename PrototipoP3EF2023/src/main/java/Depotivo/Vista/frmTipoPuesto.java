@@ -10,7 +10,7 @@ package Depotivo.Vista;
 
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsUsuarioConectado;
-import Inventarios.Controlador.clsTipoPuesto;
+import Depotivo.Controlador.clsTipoPuesto;
 import Seguridad.Modelo.Conexion;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -48,15 +48,15 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Salarioss");
-        clsTipoPuesto lineas = new clsTipoPuesto();
+        clsTipoPuesto puestos = new clsTipoPuesto();
         //VendedorDAO vendedorDAO = new VendedorDAO();
-        List<clsTipoPuesto> listaLineas = lineas.getListadoLineas();
+        List<clsTipoPuesto> listaPuestos = puestos.getListadoPuestos();
         tablaTipo.setModel(modelo);
         String[] dato = new String[4];
-        for (int i = 0; i < listaLineas.size(); i++) {
-            dato[0] = Integer.toString(listaLineas.get(i).getIdLineas());
-            dato[1] = listaLineas.get(i).getNombreLineas();
-            dato[2] = Double.toString(listaLineas.get(i).getPreciosLineas());
+        for (int i = 0; i < listaPuestos.size(); i++) {
+            dato[0] = Integer.toString(listaPuestos.get(i).getIdTipo());
+            dato[1] = listaPuestos.get(i).getNombrePuesto();
+            dato[2] = Double.toString(listaPuestos.get(i).getSalarios());
             modelo.addRow(dato);
         }       
     }
@@ -310,7 +310,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     int clsBitacora = 1003;
+     int clsBitacora = 1123;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         ///Codigo para el boton "eliminar" del mantenimiento lineas y su registro en bitacora.
         //Victor Josué Jerez Mijangos 9959-21-2081
@@ -319,9 +319,9 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "DEL");
         
         int registrosBorrados=0;
-        clsTipoPuesto lineas = new clsTipoPuesto();
-        lineas.setIdLineas(Integer.parseInt(txtbuscado.getText()));
-        registrosBorrados = lineas.setBorrarLineas(lineas);
+        clsTipoPuesto puestos = new clsTipoPuesto();
+        puestos.setIdTipo(Integer.parseInt(txtbuscado.getText()));
+        registrosBorrados = puestos.setBorrarPuestos(puestos);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -335,10 +335,10 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "INS");
         
-        clsTipoPuesto lineas = new clsTipoPuesto();
-        lineas.setNombreLineas(txtNombre.getText());
-        lineas.setPreciosLineas(Double.parseDouble(txtID.getText()));
-        lineas.setIngresarLineas(lineas);
+        clsTipoPuesto puestos = new clsTipoPuesto();
+        puestos.setNombrePuesto(txtNombre.getText());
+        puestos.setSalarios((txtID.getText()));
+        puestos.setIngresarPuestos(puestos);
         JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -346,20 +346,18 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ///Codigo para el boton "Buscar" del mantenimiento lineas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "READ");
         
-        clsTipoPuesto lineas = new clsTipoPuesto();
+        clsTipoPuesto puestos = new clsTipoPuesto();
         //aplicacion.setNombreAplicacion(txtbuscado.getText());        
-        lineas.setIdLineas(Integer.parseInt(txtbuscado.getText()));        
-        lineas = lineas.getBuscarInformacionLineasPorId(lineas);
-        System.out.println("Usuario retornado:" + lineas);
-        txtNombre.setText(lineas.getNombreLineas());
-        txtID.setText(Double.toString(lineas.getPreciosLineas()));
-        txtSalarios.setText(lineas.getEstatusLineas());
+        puestos.setIdTipo(Integer.parseInt(txtbuscado.getText()));        
+        puestos = puestos.getBuscarInformacionPuestosPorId(puestos);
+        System.out.println("Usuario retornado:" + puestos);
+        txtNombre.setText(puestos.getNombrePuesto());
+        txtSalarios.setText(Double.toString(puestos.getSalarios()));
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -371,10 +369,10 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "UPD");
 
         clsTipoPuesto lineas = new clsTipoPuesto();
-        lineas.setIdLineas(Integer.parseInt(txtbuscado.getText()));
-        lineas.setNombreLineas(txtNombre.getText());
-        lineas.setPreciosLineas(Double.parseDouble(txtID.getText()));
-        lineas.setModificarLineas(lineas);
+        lineas.setIdTipo(Integer.parseInt(txtbuscado.getText()));
+        lineas.setNombrePuesto(txtNombre.getText());
+        lineas.setSalarios((txtID.getText()));
+        lineas.setModificarPuestos(lineas);
         
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        
