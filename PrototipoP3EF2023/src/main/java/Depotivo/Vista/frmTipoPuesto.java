@@ -313,7 +313,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
      int clsBitacora = 1123;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         ///Codigo para el boton "eliminar" del mantenimiento lineas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "DEL");
@@ -330,7 +329,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         ///Codigo para el boton "Registrar" del mantenimiento lineas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "INS");
@@ -363,7 +361,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         //Codigo para el boton "Modificar" del mantenimiento lineas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "UPD");
@@ -382,7 +379,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         ///Codigo para el boton "Limpiar" del mantenimiento lineas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
         limpiarTextos();
         habilitarBotones();
         
@@ -411,7 +407,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
     
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         // Se agrega codigo para desplegar la ayuda de Lineas y para que se registre en la bitacora
-        // Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "HELP");
@@ -446,7 +441,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         // Se agrega codigo para desplegar el reporte de Lineas y para que se registre en la bitacora
-        // Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "RPT");

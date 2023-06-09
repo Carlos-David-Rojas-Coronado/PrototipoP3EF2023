@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Inventarios.Modelo;
+package Depotivo.Modelo;
 
-//Se agrega TODO el codigo para la parte del modelo del mantenimiento de movimientos.
-//Victor Josué Jerez Mijangos 9959-21-2081
 import Seguridad.Modelo.*;
-import Inventarios.Controlador.clsPais;
+import Depotivo.Controlador.clsPais;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,35 +17,31 @@ import java.util.List;
  */
 public class daoPais {
 
-    private static final String SQL_SELECT = "SELECT movCodigo, movDescripcion, movEfecto, movEstatus FROM tbl_movimientos";
-    private static final String SQL_INSERT = "INSERT INTO tbl_movimientos(movDescripcion, movEfecto, movEstatus) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_movimientos SET movDescripcion=?, movEfecto=?, movEstatus=? WHERE movCodigo = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_movimientos WHERE movCodigo=?";
-   // private static final String SQL_SELECT_EFECTO = "SELECT movCodigo, movDescripcion, movEfecto, movEstatus FROM tbl_movimientos WHERE movEfecto = ?";
-    private static final String SQL_SELECT_ID = "SELECT movCodigo, movDescripcion, movEfecto, movEstatus FROM tbl_movimientos WHERE movCodigo = ?";    
+    private static final String SQL_SELECT = "SELECT IdPais, Nombrepais, FROM tbl_paices";
+    private static final String SQL_INSERT = "INSERT INTO tbl_paices(IdPais, NombrePais) VALUES(?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_paices SET NombrePais=? WHERE IdPais = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_Paices WHERE IdPais=?";
+   // private static final String SQL_SELECT_EFECTO = "SELECT IdPais FROM tbl_movimientos WHERE NombrePais = ?";
+    private static final String SQL_SELECT_ID = "SELECT IdPais, NombrePais FROM tbl_paices WHERE IdPais = ?";    
 
-    public List<clsPais> consultaMovimientos() {
+    public List<clsPais> consultaPaices() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsPais> movimientos = new ArrayList<>();
+        List<clsPais> paices = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("movCodigo");
-                String descripcion = rs.getString("movDescripcion");
-                String efecto = rs.getString("movEfecto");
-                String estatus = rs.getString("movEstatus");
-                clsPais Movimientos = new clsPais();
-                Movimientos.setIdMovimiento(id);
-                Movimientos.setDescripcionMovimiento(descripcion);
-                Movimientos.setEfectoMovimiento(efecto);
-                Movimientos.setEstatusMovimiento(estatus);
+                int id = rs.getInt("IdPais");
+                String nombre = rs.getString("NombrePais");
+                clsPais Paices = new clsPais();
+                Paices.setIdPais(id);
+                Paices.setNombrePais(nombre);
                 
-                movimientos.add(Movimientos);
+                paices.add(Paices);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -56,19 +50,18 @@ public class daoPais {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return movimientos;
+        return paices;
     }
 
-    public int ingresaMovimientos(clsPais movimientos) {
+    public int ingresaPaices(clsPais paices) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, movimientos.getDescripcionMovimiento());
-            stmt.setString(2, movimientos.getEfectoMovimiento());
-            stmt.setString(3, movimientos.getEstatusMovimiento());
+            stmt.setInt(0, paices.getIdPais());
+            stmt.setString(1, paices.getNombrePais());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -83,7 +76,7 @@ public class daoPais {
         return rows;
     }
 
-    public int actualizaMovimientos(clsPais movimientos) {
+    public int actualizaPaices(clsPais paices) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -91,10 +84,8 @@ public class daoPais {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, movimientos.getDescripcionMovimiento());
-            stmt.setString(2, movimientos.getEfectoMovimiento());
-            stmt.setString(3, movimientos.getEstatusMovimiento());
-            stmt.setInt(4, movimientos.getIdMovimiento());
+            stmt.setString(1, paices.getNombrePais());
+            stmt.setInt(2, paices.getIdPais());
             
 
             rows = stmt.executeUpdate();
@@ -110,7 +101,7 @@ public class daoPais {
         return rows;
     }
 
-    public int borrarMovimientos(clsPais movimientos) {
+    public int borrarPaices(clsPais paices) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -119,7 +110,7 @@ public class daoPais {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, movimientos.getIdMovimiento());
+            stmt.setInt(1, paices.getIdPais());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -132,43 +123,7 @@ public class daoPais {
         return rows;
     }
 
-    /*public clsPais consultaMovimientosPorEfecto(clsPais movimientos) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        try {
-            conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_EFECTO + " objeto recibido: " + movimientos);
-            stmt = conn.prepareStatement(SQL_SELECT_EFECTO);
-            //stmt.setInt(1, aplicacion.getIdAplicacion());            
-            stmt.setString(1, movimientos.getEfectoMovimiento());
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("movCodigo");
-                String descripcion = rs.getString("movDescripcion");
-                String efecto = rs.getString("movEfecto");
-                String estatus = rs.getString("movEstatus");
-
-                //aplicacion = new clsAplicacion();
-                movimientos.setIdMovimiento(id);
-                movimientos.setDescripcionMovimiento(descripcion);
-                movimientos.setEfectoMovimiento(efecto);
-                movimientos.setEstatusMovimiento(estatus);
-                System.out.println(" registro consultado: " + movimientos);                
-            }
-            //System.out.println("Registros buscado:" + persona);
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        } finally {
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-
-        //return personas;  // Si se utiliza un ArrayList
-        return movimientos;
-    }*/
-    public clsPais consultaMovimientosPorId(clsPais movimientos) {
+    public clsPais consultaPaicesPorId(clsPais paices) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -176,21 +131,17 @@ public class daoPais {
             conn = Conexion.getConnection();
             //System.out.println("Ejecutando query:" + SQL_SELECT_EFECTO + " objeto recibido: " + movimientos);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, movimientos.getIdMovimiento());            
+            stmt.setInt(1, paices.getIdPais());            
             //stmt.setString(1, aplicacion.getNombreAplicacion());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("movCodigo");
-                String descripcion = rs.getString("movDescripcion");
-                String efecto = rs.getString("movEfecto");
-                String estatus = rs.getString("movEstatus");
+                int id = rs.getInt("IdPais");
+                String nombre = rs.getString("NombrePais");
 
                 //aplicacion = new clsAplicacion();
-                movimientos.setIdMovimiento(id);
-                movimientos.setDescripcionMovimiento(descripcion);
-                movimientos.setEfectoMovimiento(efecto);
-                movimientos.setEstatusMovimiento(estatus);
-                System.out.println(" registro consultado: " + movimientos);                
+                paices.setIdPais(id);
+                paices.setNombrePais(nombre);
+                System.out.println(" registro consultado: " + paices);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -202,6 +153,6 @@ public class daoPais {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return movimientos;
+        return paices;
     }    
 }

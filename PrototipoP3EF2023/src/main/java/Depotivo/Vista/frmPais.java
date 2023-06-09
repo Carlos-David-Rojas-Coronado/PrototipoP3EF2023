@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//Codigo para la parte de la vista del mantenimiento movimientos.
-//Victor Josué Jerez Mijangos 9959-21-2081
 package Depotivo.Vista;
 
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsUsuarioConectado;
-import Inventarios.Controlador.clsPais;
+import Depotivo.Controlador.clsPais;
 import Seguridad.Modelo.Conexion;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -41,24 +39,19 @@ public class frmPais extends javax.swing.JInternalFrame {
             cbox_empleado.addItem(empleados.get(i).getNombreEmpleado());
         } */
     }
-//Codigo para el llenado de la tabla del mantenimiento de movimientos
-//Victor Josué Jerez Mijangos 9959-21-2081
+    
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
-        modelo.addColumn("Descripcion");
-        modelo.addColumn("Efecto");
-        modelo.addColumn("Estatus");
-        clsPais movimientos = new clsPais();
+        modelo.addColumn("Nombre");
+        clsPais paices = new clsPais();
         //VendedorDAO vendedorDAO = new VendedorDAO();
-        List<clsPais> listaMovimientos = movimientos.getListadoMovimientos();
-        tablaMovimientos.setModel(modelo);
+        List<clsPais> listaPaices = paices.getListadoPaices();
+        tablaPais.setModel(modelo);
         String[] dato = new String[4];
-        for (int i = 0; i < listaMovimientos.size(); i++) {
-            dato[0] = Integer.toString(listaMovimientos.get(i).getIdMovimiento());
-            dato[1] = listaMovimientos.get(i).getDescripcionMovimiento();
-            dato[2] = listaMovimientos.get(i).getEfectoMovimiento();
-            dato[3] = listaMovimientos.get(i).getEstatusMovimiento();
+        for (int i = 0; i < listaPaices.size(); i++) {
+            dato[0] = Integer.toString(listaPaices.get(i).getIdPais());
+            dato[1] = listaPaices.get(i).getNombrePais();
             modelo.addRow(dato);
         }       
     }
@@ -87,19 +80,17 @@ public class frmPais extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         label3 = new javax.swing.JLabel();
         txtbuscado = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaMovimientos = new javax.swing.JTable();
+        tablaPais = new javax.swing.JTable();
         lb = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         label4 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
-        label8 = new javax.swing.JLabel();
-        cboEfecto = new javax.swing.JComboBox<>();
-        cboEstatus = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -108,7 +99,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Movimientos");
+        setTitle("Mantenimiento Pais");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -133,7 +124,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         });
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Movimientos");
+        label1.setText("Pais");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +134,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         });
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Descripcion");
+        label3.setText("Nombre");
 
         txtbuscado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,8 +142,8 @@ public class frmPais extends javax.swing.JInternalFrame {
             }
         });
 
-        txtDescripcion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtDescripcion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,8 +152,8 @@ public class frmPais extends javax.swing.JInternalFrame {
             }
         });
 
-        tablaMovimientos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tablaMovimientos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPais.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaPais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -170,7 +161,7 @@ public class frmPais extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tablaMovimientos);
+        jScrollPane1.setViewportView(tablaPais);
 
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
@@ -193,14 +184,7 @@ public class frmPais extends javax.swing.JInternalFrame {
         });
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label6.setText("Efecto");
-
-        label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label8.setText("Estatus");
-
-        cboEfecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
-
-        cboEstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "F" }));
+        label6.setText("ID");
 
         jButton1.setText("Reporte");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -245,8 +229,7 @@ public class frmPais extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(label8)
-                                .addGap(324, 324, 324)
+                                .addGap(361, 361, 361)
                                 .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,10 +237,8 @@ public class frmPais extends javax.swing.JInternalFrame {
                                     .addComponent(label6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cboEstatus, javax.swing.GroupLayout.Alignment.LEADING, 0, 95, Short.MAX_VALUE)
-                                        .addComponent(cboEfecto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -265,7 +246,7 @@ public class frmPais extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1)
-                        .addGap(294, 554, Short.MAX_VALUE))
+                        .addGap(294, 605, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -284,15 +265,11 @@ public class frmPais extends javax.swing.JInternalFrame {
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(label3)
-                                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(label6)
-                                    .addComponent(cboEfecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label8)
-                                    .addComponent(cboEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrar)
@@ -318,16 +295,15 @@ public class frmPais extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
      int clsBitacora = 1010;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        //Codigo para el boton "eliminar" del mantenimiento movimiento y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "DEL");
         
         int registrosBorrados=0;
-        clsPais movimientos = new clsPais();
-        movimientos.setIdMovimiento(Integer.parseInt(txtbuscado.getText()));
-        registrosBorrados = movimientos.setBorrarMovimientos(movimientos);
+        clsPais paices = new clsPais();
+        paices.setIdPais(Integer.parseInt(txtbuscado.getText()));
+        registrosBorrados = paices.setBorrarPaices(paices);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -335,17 +311,15 @@ public class frmPais extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        //Codigo para el boton "registrar" del mantenimiento movimiento y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "INS");
         
-        clsPais movimientos = new clsPais();
-        movimientos.setDescripcionMovimiento(txtDescripcion.getText());
-        movimientos.setEfectoMovimiento(String.valueOf(cboEfecto.getSelectedItem()));
-        movimientos.setEstatusMovimiento(String.valueOf(cboEstatus.getSelectedItem()));
-        movimientos.setIngresarMovimientos(movimientos);
+        clsPais paices = new clsPais();
+        paices.setNombrePais(txtNombre.getText());
+        paices.setIdPais(Integer.parseInt(txtId.getText()));
+        paices.setIngresarPaices(paices);
         JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -353,36 +327,30 @@ public class frmPais extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //Codigo para el boton "buscar" del mantenimiento movimiento y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "READ");
         
-        clsPais movimientos = new clsPais();
+        clsPais paices = new clsPais();
         //aplicacion.setNombreAplicacion(txtbuscado.getText());        
-        movimientos.setIdMovimiento(Integer.parseInt(txtbuscado.getText()));        
-        movimientos = movimientos.getBuscarInformacionMovimientosPorId(movimientos);
-        System.out.println("Usuario retornado:" + movimientos);
-        txtDescripcion.setText(movimientos.getDescripcionMovimiento());
-        cboEfecto.setSelectedItem(movimientos.getEfectoMovimiento());
-        cboEstatus.setSelectedItem(movimientos.getEstatusMovimiento());
+        paices.setIdPais(Integer.parseInt(txtbuscado.getText()));        
+        paices = paices.getBuscarInformacionPaisPorId(paices);
+        System.out.println("Usuario retornado:" + paices);
+        txtNombre.setText(paices.getNombrePais());
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         //Codigo para el boton "modificar" del mantenimiento movimiento y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "UPD");
 
-        clsPais movimientos = new clsPais();
-        movimientos.setIdMovimiento(Integer.parseInt(txtbuscado.getText()));
-        movimientos.setDescripcionMovimiento(txtDescripcion.getText());
-        movimientos.setEfectoMovimiento(String.valueOf(cboEfecto.getSelectedItem()));
-        movimientos.setEstatusMovimiento(String.valueOf(cboEstatus.getSelectedItem()));
-        movimientos.setModificarMovimientos(movimientos);
+        clsPais paices = new clsPais();
+        paices.setIdPais(Integer.parseInt(txtbuscado.getText()));
+        paices.setNombrePais(txtNombre.getText());
+        paices.setModificarPaices(paices);
         
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        
@@ -391,8 +359,7 @@ public class frmPais extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        //Codigo para el boton "limpiar" del mantenimiento movimiento y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+
         limpiarTextos();
         habilitarBotones();
         
@@ -405,7 +372,7 @@ public class frmPais extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
     public void limpiarTextos()
     {
-        txtDescripcion.setText("");
+        txtNombre.setText("");
         txtbuscado.setText("");
     }
     public void habilitarBotones()
@@ -423,8 +390,6 @@ public class frmPais extends javax.swing.JInternalFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         // Se agrega codigo para desplegar la ayuda de Movimientos  y para que se registre en la bitacora
-        // Hector Ronaldo Rosales Perez  9959-20-3188
          int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "HELP");
@@ -459,8 +424,7 @@ public class frmPais extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        // Se agrega codigo para desplegar el reporte de Movimientos y para que se registre en la bitacora
-        // Hector Ronaldo Rosales Perez  9959-20-3188
+
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "RPT");
@@ -491,8 +455,6 @@ public class frmPais extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cboEfecto;
-    private javax.swing.JComboBox<String> cboEstatus;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -500,12 +462,12 @@ public class frmPais extends javax.swing.JInternalFrame {
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label6;
-    private javax.swing.JLabel label8;
     private javax.swing.JLabel lb;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
-    private javax.swing.JTable tablaMovimientos;
-    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTable tablaPais;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }

@@ -154,6 +154,11 @@ CREATE TABLE `sede_polideportivo` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE `paices` (
+  `IdPaices` int(11) NOT NULL,
+  `NombrePais` varchar (45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Estructura de tabla para la tabla `telefono`
 --
