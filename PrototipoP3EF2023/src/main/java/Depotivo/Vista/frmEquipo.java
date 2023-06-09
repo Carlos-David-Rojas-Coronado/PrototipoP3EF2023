@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//Codigo para la parte de la vista del mantenimiento marcas.
-//Victor Josué Jerez Mijangos 9959-21-2081
 
-package Inventarios.Vista;
+package Depotivo.Vista;
 
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsUsuarioConectado;
@@ -54,7 +52,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         clsEquipo marcas = new clsEquipo();
         //VendedorDAO vendedorDAO = new VendedorDAO();
         List<clsEquipo> listaMarcas = marcas.getListadoMarcas();
-        tablaMarcas.setModel(modelo);
+        tablaEquipos.setModel(modelo);
         String[] dato = new String[5];
         for (int i = 0; i < listaMarcas.size(); i++) {
             dato[0] = Integer.toString(listaMarcas.get(i).getIdMarcas());
@@ -94,7 +92,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaMarcas = new javax.swing.JTable();
+        tablaEquipos = new javax.swing.JTable();
         txtExistencias = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
@@ -141,7 +139,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         });
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Marcas");
+        label1.setText("Equipo");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -169,8 +167,8 @@ public class frmEquipo extends javax.swing.JInternalFrame {
             }
         });
 
-        tablaMarcas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        tablaMarcas.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEquipos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        tablaEquipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -178,13 +176,13 @@ public class frmEquipo extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tablaMarcas);
+        jScrollPane1.setViewportView(tablaEquipos);
 
         txtExistencias.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtExistencias.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("Existencias");
+        label5.setText("ID");
 
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
@@ -210,10 +208,10 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         txtPrecios.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label6.setText("Precios");
+        label6.setText("ID Entrenador");
 
         label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label8.setText("Estatus");
+        label8.setText("Tipo Deporte");
 
         cboEstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "F" }));
 
@@ -275,9 +273,9 @@ public class frmEquipo extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1)
-                        .addGap(294, 581, Short.MAX_VALUE))
+                        .addGap(294, 570, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -518,7 +516,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
-    private javax.swing.JTable tablaMarcas;
+    private javax.swing.JTable tablaEquipos;
     private javax.swing.JTextField txtExistencias;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecios;

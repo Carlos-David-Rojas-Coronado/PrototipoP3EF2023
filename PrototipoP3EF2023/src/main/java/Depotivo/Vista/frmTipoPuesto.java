@@ -42,14 +42,12 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
             cbox_empleado.addItem(empleados.get(i).getNombreEmpleado());
         } */
     }
-//Codigo para el llenado de la tabla del mantenimiento lineas.
-//Victor Josué Jerez Mijangos 9959-21-2081
+
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Precios");
-        modelo.addColumn("Estatus");
+        modelo.addColumn("Salarioss");
         clsTipoPuesto lineas = new clsTipoPuesto();
         //VendedorDAO vendedorDAO = new VendedorDAO();
         List<clsTipoPuesto> listaLineas = lineas.getListadoLineas();
@@ -59,7 +57,6 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
             dato[0] = Integer.toString(listaLineas.get(i).getIdLineas());
             dato[1] = listaLineas.get(i).getNombreLineas();
             dato[2] = Double.toString(listaLineas.get(i).getPreciosLineas());
-            dato[3] = listaLineas.get(i).getEstatusLineas();
             modelo.addRow(dato);
         }       
     }
@@ -96,7 +93,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         btnAyuda = new javax.swing.JButton();
         label4 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
-        txtPrecios = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         label6 = new javax.swing.JLabel();
         label8 = new javax.swing.JLabel();
         btnReporte = new javax.swing.JButton();
@@ -193,8 +190,8 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
             }
         });
 
-        txtPrecios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtPrecios.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtID.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtID.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label6.setText("ID");
@@ -228,7 +225,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtSalarios, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(126, 126, 126)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -285,7 +282,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
                                     .addComponent(label3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,8 +337,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         
         clsTipoPuesto lineas = new clsTipoPuesto();
         lineas.setNombreLineas(txtNombre.getText());
-        lineas.setPreciosLineas(Double.parseDouble(txtPrecios.getText()));
-        lineas.setEstatusLineas(String.valueOf(txtSalarios.getText()));
+        lineas.setPreciosLineas(Double.parseDouble(txtID.getText()));
         lineas.setIngresarLineas(lineas);
         JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
@@ -362,7 +358,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         lineas = lineas.getBuscarInformacionLineasPorId(lineas);
         System.out.println("Usuario retornado:" + lineas);
         txtNombre.setText(lineas.getNombreLineas());
-        txtPrecios.setText(Double.toString(lineas.getPreciosLineas()));
+        txtID.setText(Double.toString(lineas.getPreciosLineas()));
         txtSalarios.setText(lineas.getEstatusLineas());
         
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -377,8 +373,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         clsTipoPuesto lineas = new clsTipoPuesto();
         lineas.setIdLineas(Integer.parseInt(txtbuscado.getText()));
         lineas.setNombreLineas(txtNombre.getText());
-        lineas.setPreciosLineas(Double.parseDouble(txtPrecios.getText()));
-        lineas.setEstatusLineas(String.valueOf(txtSalarios.getText()));
+        lineas.setPreciosLineas(Double.parseDouble(txtID.getText()));
         lineas.setModificarLineas(lineas);
         
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
@@ -400,7 +395,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
     public void limpiarTextos()
     {
         txtNombre.setText("");
-        txtPrecios.setText("");
+        txtID.setText("");
         txtbuscado.setText("");
     }
     public void habilitarBotones()
@@ -496,8 +491,8 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
     private javax.swing.JTable tablaTipo;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecios;
     private javax.swing.JTextField txtSalarios;
     private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables

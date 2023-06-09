@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Inventarios.Vista;
+package Depotivo.Vista;
 
 import Seguridad.Vista.*;
 import java.awt.Dimension;
@@ -57,10 +57,10 @@ public class MdiDeportivo extends javax.swing.JFrame {
         mnuSalirSistema = new javax.swing.JCheckBoxMenuItem();
         mnuCatalogos = new javax.swing.JMenu();
         mnuCatalogosMantenimientos = new javax.swing.JMenu();
-        mantenimientoLineas = new javax.swing.JMenuItem();
-        mantenimientoMarcas = new javax.swing.JCheckBoxMenuItem();
-        mantenimientoProductos = new javax.swing.JCheckBoxMenuItem();
-        mantenimientoMovimientos = new javax.swing.JCheckBoxMenuItem();
+        mantenimientoTipoPuesto = new javax.swing.JMenuItem();
+        mantenimientoEquipo = new javax.swing.JCheckBoxMenuItem();
+        mantenimientoEntrenador = new javax.swing.JCheckBoxMenuItem();
+        mantenimientoPais = new javax.swing.JCheckBoxMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuConsultas = new javax.swing.JMenu();
         consultaBitacora = new javax.swing.JCheckBoxMenuItem();
@@ -127,40 +127,40 @@ public class MdiDeportivo extends javax.swing.JFrame {
             }
         });
 
-        mantenimientoLineas.setText("Mantenimiento Tipo_puesto");
-        mantenimientoLineas.addActionListener(new java.awt.event.ActionListener() {
+        mantenimientoTipoPuesto.setText("Mantenimiento Tipo_puesto");
+        mantenimientoTipoPuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoLineasActionPerformed(evt);
+                mantenimientoTipoPuestoActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(mantenimientoLineas);
+        mnuCatalogosMantenimientos.add(mantenimientoTipoPuesto);
 
-        mantenimientoMarcas.setSelected(true);
-        mantenimientoMarcas.setText("Mantenimiento Equipo");
-        mantenimientoMarcas.addActionListener(new java.awt.event.ActionListener() {
+        mantenimientoEquipo.setSelected(true);
+        mantenimientoEquipo.setText("Mantenimiento Equipo");
+        mantenimientoEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoMarcasActionPerformed(evt);
+                mantenimientoEquipoActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(mantenimientoMarcas);
+        mnuCatalogosMantenimientos.add(mantenimientoEquipo);
 
-        mantenimientoProductos.setSelected(true);
-        mantenimientoProductos.setText("Mantenimiento Entrenador");
-        mantenimientoProductos.addActionListener(new java.awt.event.ActionListener() {
+        mantenimientoEntrenador.setSelected(true);
+        mantenimientoEntrenador.setText("Mantenimiento Entrenador");
+        mantenimientoEntrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoProductosActionPerformed(evt);
+                mantenimientoEntrenadorActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(mantenimientoProductos);
+        mnuCatalogosMantenimientos.add(mantenimientoEntrenador);
 
-        mantenimientoMovimientos.setSelected(true);
-        mantenimientoMovimientos.setText("Mantenimiento Pais");
-        mantenimientoMovimientos.addActionListener(new java.awt.event.ActionListener() {
+        mantenimientoPais.setSelected(true);
+        mantenimientoPais.setText("Mantenimiento Pais");
+        mantenimientoPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoMovimientosActionPerformed(evt);
+                mantenimientoPaisActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(mantenimientoMovimientos);
+        mnuCatalogosMantenimientos.add(mantenimientoPais);
 
         mnuCatalogos.add(mnuCatalogosMantenimientos);
 
@@ -214,14 +214,14 @@ public class MdiDeportivo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnuCatalogosMantenimientosActionPerformed
 
-    private void mantenimientoLineasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoLineasActionPerformed
+    private void mantenimientoTipoPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoTipoPuestoActionPerformed
         // TODO add your handling code here:
         frmTipoPuesto ventana = new frmTipoPuesto();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-    }//GEN-LAST:event_mantenimientoLineasActionPerformed
+    }//GEN-LAST:event_mantenimientoTipoPuestoActionPerformed
 
     private void mnuArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArchivoActionPerformed
         // TODO add your handling code here:
@@ -240,23 +240,23 @@ public class MdiDeportivo extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_mnuSalirSistemaActionPerformed
 
-    private void mantenimientoMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoMarcasActionPerformed
+    private void mantenimientoEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoEquipoActionPerformed
         // TODO add your handling code here:
         frmEquipo ventana = new frmEquipo();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-    }//GEN-LAST:event_mantenimientoMarcasActionPerformed
+    }//GEN-LAST:event_mantenimientoEquipoActionPerformed
 
-    private void mantenimientoProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoProductosActionPerformed
+    private void mantenimientoEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoEntrenadorActionPerformed
         // TODO add your handling code here:
         frmEntrenador ventana = new frmEntrenador();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);   
-    }//GEN-LAST:event_mantenimientoProductosActionPerformed
+    }//GEN-LAST:event_mantenimientoEntrenadorActionPerformed
 
     private void mnuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultasActionPerformed
         // TODO add your handling code here:
@@ -276,14 +276,14 @@ public class MdiDeportivo extends javax.swing.JFrame {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
     }//GEN-LAST:event_consultaBitacoraActionPerformed
 
-    private void mantenimientoMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoMovimientosActionPerformed
+    private void mantenimientoPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoPaisActionPerformed
         // TODO add your handling code here:
         frmPais ventana = new frmPais();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-    }//GEN-LAST:event_mantenimientoMovimientosActionPerformed
+    }//GEN-LAST:event_mantenimientoPaisActionPerformed
 
     private void MantenimientoDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoDetallesActionPerformed
         // TODO add your handling code here:
@@ -350,10 +350,10 @@ public class MdiDeportivo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JLabel lbl;
-    private javax.swing.JMenuItem mantenimientoLineas;
-    private javax.swing.JCheckBoxMenuItem mantenimientoMarcas;
-    private javax.swing.JCheckBoxMenuItem mantenimientoMovimientos;
-    private javax.swing.JCheckBoxMenuItem mantenimientoProductos;
+    private javax.swing.JCheckBoxMenuItem mantenimientoEntrenador;
+    private javax.swing.JCheckBoxMenuItem mantenimientoEquipo;
+    private javax.swing.JCheckBoxMenuItem mantenimientoPais;
+    private javax.swing.JMenuItem mantenimientoTipoPuesto;
     private javax.swing.JMenu mnuArchivo;
     private javax.swing.JMenu mnuAyudas;
     private javax.swing.JMenu mnuCatalogos;

@@ -5,7 +5,7 @@
  */
 package Seguridad.Vista;
 
-import Inventarios.Vista.MdiDeportivo;
+import Depotivo.Vista.MdiDeportivo;
 import Seguridad.Controlador.clsUsuario;
 import java.awt.HeadlessException;
 
@@ -13,8 +13,7 @@ import javax.swing.JOptionPane;
 import Seguridad.Controlador.clsUsuarioConectado;
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsSeguridad;
-import Ventas.Vista.MdiVentas;
-import Bancos.Vista.MdiBancos;
+
 /**
  *
  * @author visitante
@@ -29,7 +28,6 @@ public class frmLogin extends javax.swing.JFrame {
         
         initComponents();
         setLocationRelativeTo(null);
-        //Corregui el diseño del login y le agregue el combobox para las diferentres areas= hector Ronaldo Rosales Perez
         setSize(350, 250);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -50,8 +48,6 @@ public class frmLogin extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txtContraseña = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        cboOpciones = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,17 +79,6 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Departamento");
-
-
-        cboOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bancos", "Compras", "Cuentas Corrientes", "Inventarios", "Seguridad", "Ventas" }));
-        cboOpciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboOpcionesActionPerformed(evt);
-            }
-        });
-
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,17 +91,11 @@ public class frmLogin extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(28, 28, 28)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(18, 18, 18))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel4)
-                                    .addGap(2, 2, 2)))
+                            .addGap(28, 28, 28)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnAceptar)
@@ -124,9 +103,7 @@ public class frmLogin extends javax.swing.JFrame {
                                     .addComponent(jButton2))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(27, 27, 27)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cboOpciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,15 +119,11 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(cboOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,8 +143,6 @@ public class frmLogin extends javax.swing.JFrame {
                 clsUsuario usuario = new clsUsuario();
           
                 usuario.setNombreUsuario(txtUsuario.getText().trim());
-                // Recuperación de información a través de otro objeto
-                // se agrego codificacion de seguridad = David Rojas
                 clsSeguridad c = new clsSeguridad();
                 usuario.setContrasenaUsuario(c.encode(txtContraseña.getText()));
                 
@@ -192,71 +163,6 @@ public class frmLogin extends javax.swing.JFrame {
                     /*MdiSeguridad menuGeneral = new MdiSeguridad();
                     menuGeneral.setVisible(true);
                     this.dispose();*/
-                    
-                    //Agregando switch case para funcionalidad de todos los módulos(Agregar MDI's al switch)
-                    //Victor Josué Jerez Mijangos 9959-21-2081
-                    String areaSeleccionada;
-                    areaSeleccionada = cboOpciones.getSelectedItem().toString();
-                    
-                    switch (areaSeleccionada) {
-
-                        case "Bancos":
-                        try {
-                            MdiBancos menu = new MdiBancos();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Compras":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Cuentas Corrientes":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Inventarios":
-                        try {
-                            MdiDeportivo menu = new MdiDeportivo();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Seguridad":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Ventas":
-                        try {
-                            MdiVentas menu = new MdiVentas();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        default:
-                            break;
-                    }
 
                 } else {
                     JOptionPane.showMessageDialog(this, "ERROR AL ENCONTRAR USUARIO o CONTRASEÑA",                              "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -276,10 +182,6 @@ public class frmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void cboOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboOpcionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboOpcionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,12 +223,10 @@ public class frmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JComboBox<String> cboOpciones;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

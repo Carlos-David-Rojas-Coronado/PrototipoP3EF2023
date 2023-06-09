@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-//Codigo para la parte de la vista del mantenimiento productos.
-//Victor Josué Jerez Mijangos 9959-21-2081
-package Inventarios.Vista;
+package Depotivo.Vista;
 
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsUsuarioConectado;
