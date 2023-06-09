@@ -8,7 +8,7 @@ package Depotivo.Vista;
 
 import Seguridad.Controlador.clsBitacora;
 import Seguridad.Controlador.clsUsuarioConectado;
-import Inventarios.Controlador.clsEquipo;
+import Depotivo.Controlador.clsEquipo;
 import Seguridad.Modelo.Conexion;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -114,7 +114,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Marcas");
+        setTitle("Mantenimiento Equipos");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");

@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//Se agrega todo el codigo para la parte del modelo del mantenimiento de marcas.
-//Victor Josué Jerez Mijangos 9959-21-2081
-package Inventarios.Modelo;
+package Depotivo.Modelo;
 
 import  Seguridad.Modelo.*;
-import Inventarios.Controlador.clsEquipo;
+import Depotivo.Controlador.clsEquipo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +17,12 @@ import java.util.List;
  */
 public class daoEquipo {
 
-    private static final String SQL_SELECT = "SELECT marCodigo, marNombre, marExistencias, marPrecios, marEstatus FROM tbl_marcas";
-    private static final String SQL_INSERT = "INSERT INTO tbl_marcas(marNombre, marExistencias, marPrecios, marEstatus) VALUES(?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_marcas SET marNombre=?, marExistencias=?, marPrecios=?, marEstatus=? WHERE marCodigo = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_marcas WHERE marCodigo=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT marCodigo, marNombre, marExistencias, marPrecios, marEstatus FROM tbl_marcas WHERE marNombre = ?";
-    private static final String SQL_SELECT_ID = "SELECT marCodigo, marNombre, marExistencias, marPrecios, marEstatus FROM tbl_marcas WHERE marCodigo = ?";    
+    private static final String SQL_SELECT = "SELECT ID_EQUIPO, NOMBRE_EQUIPO, ID_ENTRENADOR_FK, ID_TIPO_DEPORTE_FK,  FROM tbl_equipo";
+    private static final String SQL_INSERT = "INSERT INTO tbl_equipo(NOMNRE_EQUIPO, ID_EQUIPO, ID_ENTRENADOR_FK, ID_TIPO_DEPORTE_FK) VALUES(?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_equipo SET NOMBRE_EQUIPO=?, ID_ENTRENADOR_FK=?, ID_TIPO_DEPORTE_FK=?, WHERE ID_EQUIPO = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_equipo WHERE ID_EQUIPO=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT ID_EQUIPO, NOMBRE_EQUIPO, ID_ENTRENADOR_FK, ID_TIPO_DEPORTE_FK, FROM tbl_equipo WHERE NOMBRE_EQUIPO = ?";
+    private static final String SQL_SELECT_ID = "SELECT marCodigo, marNombre, marExistencias, marPrecios FROM tbl_marcas WHERE ID_EQUIPO = ?";    
 
     public List<clsEquipo> consultaMarcas() {
         Connection conn = null;

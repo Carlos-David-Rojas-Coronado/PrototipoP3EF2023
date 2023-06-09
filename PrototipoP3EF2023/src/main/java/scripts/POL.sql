@@ -110,7 +110,6 @@ CREATE TABLE `equipo` (
   `NOMBRE_EQUIPO` varchar(50) DEFAULT NULL,
   `ID_ENTRENADOR_FK` int(11) NOT NULL,
   `ID_TIPO_DEPORTE__FK` int(11) NOT NULL,
-  `TORNEOS_GANADOS` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
