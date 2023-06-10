@@ -12,80 +12,63 @@ import Depotivo.Modelo.daoEquipo;
  * @author visitante
  */
 public class clsEquipo {
-    private int IdMarcas;
-    private String NombreMarcas;
-    private int ExistenciasMarcas;
-    private double PreciosMarcas;
-    private String EstatusMarcas;
+    private int IdEquipos;
+    private String NombreEquipos;
+    private int IdEntrenador;
+    private int IdDeporte;
 
-    public int getIdMarcas() {
-        return IdMarcas;
+    public int getIdEquipos() {
+        return IdEquipos;
     }
 
-    public void setIdMarcas(int IdMarcas) {
-        this.IdMarcas = IdMarcas;
+    public void setIdEquipos(int IdEquipos) {
+        this.IdEquipos = IdEquipos;
     }
 
-    public String getNombreMarcas() {
-        return NombreMarcas;
+    public String getNombreEquipos() {
+        return NombreEquipos;
     }
 
-    public void setNombreMarcas(String NombreMarcas) {
-        this.NombreMarcas = NombreMarcas;
+    public void setNombreEquipos(String NombreEquipos) {
+        this.NombreEquipos = NombreEquipos;
     }
 
-    public int getExistenciasMarcas() {
-        return ExistenciasMarcas;
+    public int getIdEntrenadores() {
+        return IdEntrenador;
     }
 
-    public void setExistenciasMarcas(int ExistenciasMarcas) {
-        this.ExistenciasMarcas = ExistenciasMarcas;
+    public void setIdEntrenadores (int IdEntrenadores) {
+        this.IdEntrenador = IdEntrenadores;
     }
 
-    public double getPreciosMarcas() {
-        return PreciosMarcas;
+    public int getIdDeportes() {
+        return IdDeporte;
     }
 
-    public void setPreciosMarcas(double PreciosMarcas) {
-        this.PreciosMarcas = PreciosMarcas;
+    public void setIdDeportes(int IdDeportes) {
+        this.IdDeporte = IdDeportes;
     }
 
-    public String getEstatusMarcas() {
-        return EstatusMarcas;
+    public clsEquipo(int IdEquipo, String NombreEquipo, int IdEntrenadores, int IdDeportes) {
+        this.IdEquipos = IdEquipo;
+        this.NombreEquipos = NombreEquipo;
+        this.IdEntrenador = IdEntrenadores;
+        this.IdDeporte = IdDeportes;
     }
 
-    public void setEstatusMarcas(String EstatusMarcas) {
-        this.EstatusMarcas = EstatusMarcas;
+    public clsEquipo(int IdEquipos, String NombreEquipos, int ExistenciasMarcas) {
+        this.IdEquipos = IdEquipos;
+        this.NombreEquipos = NombreEquipos;
+        this.IdEntrenador = ExistenciasMarcas;
     }
 
-    public clsEquipo(int IdMarcas, String NombreMarcas, int ExistenciasMarcas, double PreciosMarcas) {
-        this.IdMarcas = IdMarcas;
-        this.NombreMarcas = NombreMarcas;
-        this.ExistenciasMarcas = ExistenciasMarcas;
-        this.PreciosMarcas = PreciosMarcas;
+    public clsEquipo(int IdEquipos, String NombreEquipos) {
+        this.IdEquipos = IdEquipos;
+        this.NombreEquipos = NombreEquipos;
     }
 
-    public clsEquipo(int IdMarcas, String NombreMarcas, int ExistenciasMarcas, double PreciosMarcas, String EstatusMarcas) {
-        this.IdMarcas = IdMarcas;
-        this.NombreMarcas = NombreMarcas;
-        this.ExistenciasMarcas = ExistenciasMarcas;
-        this.PreciosMarcas = PreciosMarcas;
-        this.EstatusMarcas = EstatusMarcas;
-    }
-
-    public clsEquipo(int IdMarcas, String NombreMarcas, int ExistenciasMarcas) {
-        this.IdMarcas = IdMarcas;
-        this.NombreMarcas = NombreMarcas;
-        this.ExistenciasMarcas = ExistenciasMarcas;
-    }
-
-    public clsEquipo(int IdMarcas, String NombreMarcas) {
-        this.IdMarcas = IdMarcas;
-        this.NombreMarcas = NombreMarcas;
-    }
-
-    public clsEquipo(int IdMarcas) {
-        this.IdMarcas = IdMarcas;
+    public clsEquipo(int IdEquipos) {
+        this.IdEquipos = IdEquipos;
     }
 
     public clsEquipo() {
@@ -94,39 +77,39 @@ public class clsEquipo {
     
     
     //Metodos de acceso a la capa controlador
-    public clsEquipo getBuscarInformacionMarcasPorNombre(clsEquipo Marcas)
+    public clsEquipo getBuscarInformacionEquiposPorNombre(clsEquipo Equipos)
     {
-        daoEquipo daomarcas = new daoEquipo();
-        return daomarcas.consultaMarcasPorNombre(Marcas);
+        daoEquipo daoequipos = new daoEquipo();
+        return daoequipos.consultaEquiposPorNombre(Equipos);
     }
-    public clsEquipo getBuscarInformacionMarcasPorId(clsEquipo Marcas)
+    public clsEquipo getBuscarInformacionEquiposPorId(clsEquipo Equipos)
     {
-        daoEquipo daomarcas = new daoEquipo();
-        return daomarcas.consultaMarcasPorId(Marcas);
+        daoEquipo daoequipos = new daoEquipo();
+        return daoequipos.consultaEquiposPorId(Equipos);
     }
-    public List<clsEquipo> getListadoMarcas()
+    public List<clsEquipo> getListadoEquipos()
     {
-        daoEquipo daomarcas = new daoEquipo();
-        List<clsEquipo> listadoMarcas = daomarcas.consultaMarcas();
-        return listadoMarcas;
+        daoEquipo daoequipos = new daoEquipo();
+        List<clsEquipo> listadoEquipos = daoequipos.consultaEquipos();
+        return listadoEquipos;
     }
-    public int setBorrarMarcas(clsEquipo Marcas)
+    public int setBorrarEquipos(clsEquipo Equipos)
     {
-        daoEquipo daomarcas = new daoEquipo();
-        return daomarcas.borrarMarcas(Marcas);
+        daoEquipo daoequipos = new daoEquipo();
+        return daoequipos.borrarEquipos(Equipos);
     }
-    public int setIngresarMarcas(clsEquipo Marcas)
+    public int setIngresarEquipos(clsEquipo Equipos)
     {
-        daoEquipo daomarcas = new daoEquipo();
-        return daomarcas.ingresaMarcas(Marcas);
+        daoEquipo daoequipos = new daoEquipo();
+        return daoequipos.ingresaEquipos(Equipos);
     }              
-    public int setModificarMarcas(clsEquipo Marcas)
+    public int setModificarEquipos(clsEquipo Equipos)
     {
-        daoEquipo daomarcas = new daoEquipo();
-        return daomarcas.actualizaMarcas(Marcas);
+        daoEquipo daoequipos = new daoEquipo();
+        return daoequipos.actualizaEquipos(Equipos);
     }
 
-    public void add(List<clsEquipo> Marcas) {
+    public void add(List<clsEquipo> equipos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

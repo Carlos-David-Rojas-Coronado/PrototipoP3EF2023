@@ -56,7 +56,7 @@ public class frmTipoPuesto extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaPuestos.size(); i++) {
             dato[0] = Integer.toString(listaPuestos.get(i).getIdTipo());
             dato[1] = listaPuestos.get(i).getNombrePuesto();
-            dato[2] = Double.toString(listaPuestos.get(i).getSalarios());
+            dato[2] = Integer.toString(listaPuestos.get(i).getSalarios());
             modelo.addRow(dato);
         }       
     }

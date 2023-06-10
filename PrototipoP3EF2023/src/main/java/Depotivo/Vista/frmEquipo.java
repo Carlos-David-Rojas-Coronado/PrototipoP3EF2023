@@ -40,26 +40,23 @@ public class frmEquipo extends javax.swing.JInternalFrame {
             cbox_empleado.addItem(empleados.get(i).getNombreEmpleado());
         } */
     }
-//Codigo para el llenado de la tabla del mantenimiento de marcas
-//Victor Josué Jerez Mijangos 9959-21-2081
+//Codigo para el llenado de la tabla del mantenimiento de equipos
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Existencias");
-        modelo.addColumn("Precios");
-        modelo.addColumn("Estatus");
-        clsEquipo marcas = new clsEquipo();
+        modelo.addColumn("Entrenadores");
+        modelo.addColumn("Deportes");
+        clsEquipo equipos = new clsEquipo();
         //VendedorDAO vendedorDAO = new VendedorDAO();
-        List<clsEquipo> listaMarcas = marcas.getListadoMarcas();
+        List<clsEquipo> listaEquipos = equipos.getListadoEquipos();
         tablaEquipos.setModel(modelo);
-        String[] dato = new String[5];
-        for (int i = 0; i < listaMarcas.size(); i++) {
-            dato[0] = Integer.toString(listaMarcas.get(i).getIdMarcas());
-            dato[1] = listaMarcas.get(i).getNombreMarcas();
-            dato[2] = Integer.toString(listaMarcas.get(i).getExistenciasMarcas());
-            dato[3] = Double.toString(listaMarcas.get(i).getPreciosMarcas());
-            dato[4] = listaMarcas.get(i).getEstatusMarcas();
+        String[] dato = new String[4];
+        for (int i = 0; i < listaEquipos.size(); i++) {
+            dato[0] = Integer.toString(listaEquipos.get(i).getIdEquipos());
+            dato[1] = listaEquipos.get(i).getNombreEquipos();
+            dato[2] = Integer.toString(listaEquipos.get(i).getIdEntrenadores());
+            dato[3] = Integer.toString(listaEquipos.get(i).getIdDeportes());
             modelo.addRow(dato);
         }       
     }
@@ -93,17 +90,17 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaEquipos = new javax.swing.JTable();
-        txtExistencias = new javax.swing.JTextField();
+        txtIdequipos = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
         btnAyuda = new javax.swing.JButton();
         label4 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
-        txtPrecios = new javax.swing.JTextField();
+        txtEntrenador = new javax.swing.JTextField();
         label6 = new javax.swing.JLabel();
         label8 = new javax.swing.JLabel();
-        cboEstatus = new javax.swing.JComboBox<>();
         btnReportes = new javax.swing.JButton();
+        txtDeporte = new javax.swing.JTextField();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -178,11 +175,11 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaEquipos);
 
-        txtExistencias.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtExistencias.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtIdequipos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtIdequipos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("ID");
+        label5.setText("ID Equipo");
 
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
@@ -204,16 +201,14 @@ public class frmEquipo extends javax.swing.JInternalFrame {
             }
         });
 
-        txtPrecios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtPrecios.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtEntrenador.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtEntrenador.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label6.setText("ID Entrenador");
 
         label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label8.setText("Tipo Deporte");
-
-        cboEstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "F" }));
+        label8.setText("ID Deporte");
 
         btnReportes.setText("Reportes");
         btnReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -260,10 +255,10 @@ public class frmEquipo extends javax.swing.JInternalFrame {
                             .addComponent(label8))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPrecios)
-                            .addComponent(txtExistencias, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboEstatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEntrenador)
+                            .addComponent(txtIdequipos, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(txtDeporte))
                         .addGap(12, 12, 12)
                         .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19)
@@ -294,16 +289,16 @@ public class frmEquipo extends javax.swing.JInternalFrame {
                                     .addComponent(label3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtExistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdequipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label5))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtPrecios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(label8)
-                                    .addComponent(cboEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtDeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegistrar)
@@ -328,16 +323,15 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
      int clsBitacora = 1001;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        ///Codigo para el boton "eliminar" del mantenimiento marcas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+        ///Codigo para el boton "eliminar" del mantenimiento equipos y su registro en bitacora.
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "DEL");
         
         int registrosBorrados=0;
-        clsEquipo marcas = new clsEquipo();
-        marcas.setIdMarcas(Integer.parseInt(txtbuscado.getText()));
-        registrosBorrados=marcas.setBorrarMarcas(marcas);
+        clsEquipo equipos = new clsEquipo();
+        equipos.setIdEquipos(Integer.parseInt(txtbuscado.getText()));
+        registrosBorrados=equipos.setBorrarEquipos(equipos);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -345,18 +339,18 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        ///Codigo para el boton "Registrar" del mantenimiento marcas y su registro en bitacora.
+        ///Codigo para el boton "Registrar" del mantenimiento equipos y su registro en bitacora.
         //Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "INS");
         
-        clsEquipo marcas = new clsEquipo();
-        marcas.setNombreMarcas(txtNombre.getText());
-        marcas.setExistenciasMarcas(Integer.parseInt(txtExistencias.getText()));
-        marcas.setPreciosMarcas(Double.parseDouble(txtPrecios.getText()));
-        marcas.setEstatusMarcas(String.valueOf(cboEstatus.getSelectedItem()));
-        marcas.setIngresarMarcas(marcas);
+        clsEquipo equipos = new clsEquipo();
+        equipos.setNombreEquipos(txtNombre.getText());
+        equipos.setIdEquipos(Integer.parseInt(txtIdequipos.getText()));
+        equipos.setIdEntrenadores(Integer.parseInt(txtEntrenador.getText()));
+        equipos.setIdDeportes(Integer.parseInt(txtDeporte.getText()));
+        equipos.setIngresarEquipos(equipos);
         JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -364,38 +358,36 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ///Codigo para el boton "buscar" del mantenimiento marcas y su registro en bitacora.
-        //Victor Josué Jerez Mijangos 9959-21-2081
+        ///Codigo para el boton "buscar" del mantenimiento equipos y su registro en bitacora.
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "READ");
         
-        clsEquipo marcas = new clsEquipo();
+        clsEquipo equipos = new clsEquipo();
         //aplicacion.setNombreAplicacion(txtbuscado.getText());        
-        marcas.setIdMarcas(Integer.parseInt(txtbuscado.getText()));        
-        marcas = marcas.getBuscarInformacionMarcasPorId(marcas);
-        System.out.println("Usuario retornado:" + marcas);
-        txtNombre.setText(marcas.getNombreMarcas());
-        txtExistencias.setText(Integer.toString(marcas.getExistenciasMarcas()));
-        txtPrecios.setText(Double.toString(marcas.getPreciosMarcas()));
-        cboEstatus.setSelectedItem(marcas.getEstatusMarcas());
+        equipos.setIdEquipos(Integer.parseInt(txtbuscado.getText()));        
+        equipos = equipos.getBuscarInformacionEquiposPorId(equipos);
+        System.out.println("Usuario retornado:" + equipos);
+        txtNombre.setText(equipos.getNombreEquipos());
+        txtIdequipos.setText(Integer.toString(equipos.getIdEquipos()));
+        txtEntrenador.setText(Integer.toString(equipos.getIdEntrenadores()));
+        txtDeporte.setText(Integer.toString(equipos.getIdDeportes()));
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        //Codigo para el boton "modificar" del mantenimiento marcas y su registro en bitacora.
+        //Codigo para el boton "modificar" del mantenimiento equipos y su registro en bitacora.
         //Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "UPD");
 
-        clsEquipo marcas = new clsEquipo();
-        marcas.setIdMarcas(Integer.parseInt(txtbuscado.getText()));
-        marcas.setNombreMarcas(txtNombre.getText());
-        marcas.setExistenciasMarcas(Integer.parseInt(txtExistencias.getText()));
-        marcas.setPreciosMarcas(Double.parseDouble(txtPrecios.getText()));
-        marcas.setEstatusMarcas(String.valueOf(cboEstatus.getSelectedItem()));
-        marcas.setModificarMarcas(marcas);
+        clsEquipo equipos = new clsEquipo();
+        equipos.setIdEquipos(Integer.parseInt(txtbuscado.getText()));
+        equipos.setNombreEquipos(txtNombre.getText());
+        equipos.setIdEntrenadores(Integer.parseInt(txtIdequipos.getText()));
+        equipos.setIdDeportes(Integer.parseInt(txtDeporte.getText()));
+        equipos.setModificarEquipos(equipos);
         
         JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        
@@ -404,7 +396,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        ///Codigo para el boton "Limpiar" del mantenimiento marcas y su registro en bitacora.
+        ///Codigo para el boton "Limpiar" del mantenimiento equipos y su registro en bitacora.
         //Victor Josué Jerez Mijangos 9959-21-2081
         limpiarTextos();
         habilitarBotones();
@@ -417,8 +409,8 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     public void limpiarTextos()
     {
         txtNombre.setText("");
-        txtExistencias.setText("");
-        txtPrecios.setText("");
+        txtIdequipos.setText("");
+        txtEntrenador.setText("");
         txtbuscado.setText("");
     }
     public void habilitarBotones()
@@ -435,17 +427,17 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     }    
     
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
-        // Se agrega codigo para desplegar la ayuda de Marcas y para que se registre en la bitacora
+        // Se agrega codigo para desplegar la ayuda de equipos y para que se registre en la bitacora
         // Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
         resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), clsBitacora, "HELP");
         
         try {
-            if ((new File("src\\main\\java\\inventarios\\ayudas\\ayudasmarcas.chm")).exists()) {
+            if ((new File("src\\main\\java\\inventarios\\ayudas\\ayudasequipos.chm")).exists()) {
                 Process p = Runtime
                 .getRuntime()
-                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\inventarios\\ayudas\\ayudasmarcas.chm");
+                .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\inventarios\\ayudas\\ayudasequipos.chm");
                 p.waitFor();
             } else {
                 System.out.println("La ayuda no fue encontrada");
@@ -470,7 +462,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtbuscadoActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        // Se agrega codigo para desplegar el reporte de Marcas y para que se registre en la bitacora
+        // Se agrega codigo para desplegar el reporte de equipos y para que se registre en la bitacora
         // Victor Josué Jerez Mijangos 9959-21-2081
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
@@ -484,7 +476,7 @@ public class frmEquipo extends javax.swing.JInternalFrame {
         try {
             conn = Conexion.getConnection();
             report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
-                    + "/src/main/java/inventarios/reportes/reporteMarcas.jrxml");
+                    + "/src/main/java/inventarios/reportes/reporteequipos.jrxml");
 	    print = JasperFillManager.fillReport(report, p, conn);
             JasperViewer view = new JasperViewer(print, false);
 	    view.setTitle("Reporte Prueba");
@@ -505,7 +497,6 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnReportes;
-    private javax.swing.JComboBox<String> cboEstatus;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label3;
@@ -517,9 +508,10 @@ public class frmEquipo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
     private javax.swing.JTable tablaEquipos;
-    private javax.swing.JTextField txtExistencias;
+    private javax.swing.JTextField txtDeporte;
+    private javax.swing.JTextField txtEntrenador;
+    private javax.swing.JTextField txtIdequipos;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecios;
     private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }

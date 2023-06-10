@@ -22,32 +22,30 @@ public class daoEquipo {
     private static final String SQL_UPDATE = "UPDATE tbl_equipo SET NOMBRE_EQUIPO=?, ID_ENTRENADOR_FK=?, ID_TIPO_DEPORTE_FK=?, WHERE ID_EQUIPO = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_equipo WHERE ID_EQUIPO=?";
     private static final String SQL_SELECT_NOMBRE = "SELECT ID_EQUIPO, NOMBRE_EQUIPO, ID_ENTRENADOR_FK, ID_TIPO_DEPORTE_FK, FROM tbl_equipo WHERE NOMBRE_EQUIPO = ?";
-    private static final String SQL_SELECT_ID = "SELECT marCodigo, marNombre, marExistencias, marPrecios FROM tbl_marcas WHERE ID_EQUIPO = ?";    
+    private static final String SQL_SELECT_ID = "SELECT ID_EQUIPO, NOMBRE_EQUIPO, ID_ENTRENADOR_FK, ID_TIPO_DEPORTE_FK FROM tbl_equipo WHERE ID_EQUIPO = ?";    
 
-    public List<clsEquipo> consultaMarcas() {
+    public List<clsEquipo> consultaEquipos() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsEquipo> marcas = new ArrayList<>();
+        List<clsEquipo> equipos = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("marCodigo");
-                String nombre = rs.getString("marNombre");
-                int existencias = rs.getInt("marExistencias");
-                double precio = rs.getDouble("marPrecios");
-                String estatus = rs.getString("marEstatus");
-                clsEquipo Marcas = new clsEquipo();
-                Marcas.setIdMarcas(id);
-                Marcas.setNombreMarcas(nombre);
-                Marcas.setExistenciasMarcas(existencias);
-                Marcas.setPreciosMarcas(precio);
-                Marcas.setEstatusMarcas(estatus);
+                int id = rs.getInt("ID_EQUIPO");
+                String nombre = rs.getString("NOMBRE_EQUIPO");
+                int entrenador = rs.getInt("ID_EMTRENADOR_FK");
+                int deporte = rs.getInt("ID_TIPO_DEPORTE_FK");
+                clsEquipo Equipos = new clsEquipo();
+                Equipos.setIdEquipos(id);
+                Equipos.setNombreEquipos(nombre);
+                Equipos.setIdEntrenadores(entrenador);
+                Equipos.setIdDeportes(deporte);
                 
-                marcas.add(Marcas);
+                equipos.add(Equipos);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -56,20 +54,19 @@ public class daoEquipo {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return marcas;
+        return equipos;
     }
 
-    public int ingresaMarcas(clsEquipo marcas) {
+    public int ingresaEquipos(clsEquipo equipos) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, marcas.getNombreMarcas());
-            stmt.setInt(2, marcas.getExistenciasMarcas());
-            stmt.setDouble(3, marcas.getPreciosMarcas());
-            stmt.setString(4, marcas.getEstatusMarcas());
+            stmt.setString(1, equipos.getNombreEquipos());
+            stmt.setInt(2, equipos.getIdEntrenadores());
+            stmt.setDouble(3, equipos.getIdDeportes());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -84,7 +81,7 @@ public class daoEquipo {
         return rows;
     }
 
-    public int actualizaMarcas(clsEquipo marcas) {
+    public int actualizaEquipos(clsEquipo equipos) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -92,11 +89,10 @@ public class daoEquipo {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, marcas.getNombreMarcas());
-            stmt.setInt(2, marcas.getExistenciasMarcas());
-            stmt.setDouble(3, marcas.getPreciosMarcas());
-            stmt.setString(4, marcas.getEstatusMarcas());
-            stmt.setInt(5, marcas.getIdMarcas());
+            stmt.setString(1, equipos.getNombreEquipos());
+            stmt.setInt(2, equipos.getIdEntrenadores());
+            stmt.setDouble(3, equipos.getIdDeportes());
+            stmt.setInt(5, equipos.getIdEquipos());
             
 
             rows = stmt.executeUpdate();
@@ -112,7 +108,7 @@ public class daoEquipo {
         return rows;
     }
 
-    public int borrarMarcas(clsEquipo marcas) {
+    public int borrarEquipos(clsEquipo equipos) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -121,7 +117,7 @@ public class daoEquipo {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, marcas.getIdMarcas());
+            stmt.setInt(1, equipos.getIdEquipos());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -134,31 +130,29 @@ public class daoEquipo {
         return rows;
     }
 
-    public clsEquipo consultaMarcasPorNombre(clsEquipo marcas) {
+    public clsEquipo consultaEquiposPorNombre(clsEquipo equipos) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + marcas);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + equipos);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, aplicacion.getIdAplicacion());            
-            stmt.setString(1, marcas.getNombreMarcas());
+            stmt.setString(1, equipos.getNombreEquipos());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("marCodigo");
-                String nombre = rs.getString("marNombre");
-                int existencias = rs.getInt("marExistencias");
-                double precios = rs.getDouble("marPrecios");
-                String estatus = rs.getString("marEstatus");
+                int id = rs.getInt("ID_EQUIPO");
+                String nombre = rs.getString("NOMBRE_EQUIPO");
+                int entrenador = rs.getInt("ID_ENTRENADOR_FK");
+                int deporte = rs.getInt("ID_TIPO_DEPORTE_FK");
 
                 //aplicacion = new clsAplicacion();
-                marcas.setIdMarcas(id);
-                marcas.setNombreMarcas(nombre);
-                marcas.setExistenciasMarcas(existencias);
-                marcas.setPreciosMarcas(precios);
-                marcas.setEstatusMarcas(estatus);
-                System.out.println(" registro consultado: " + marcas);                
+                equipos.setIdEquipos(id);
+                equipos.setNombreEquipos(nombre);
+                equipos.setIdEntrenadores(entrenador);
+                equipos.setIdDeportes(deporte);
+                System.out.println(" registro consultado: " + equipos);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -170,33 +164,31 @@ public class daoEquipo {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return marcas;
+        return equipos;
     }
-    public clsEquipo consultaMarcasPorId(clsEquipo marcas) {
+    public clsEquipo consultaEquiposPorId(clsEquipo equipos) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + marcas);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + equipos);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, marcas.getIdMarcas());            
+            stmt.setInt(1, equipos.getIdEquipos());            
             //stmt.setString(1, aplicacion.getNombreAplicacion());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("marCodigo");
-                String nombre = rs.getString("marNombre");
-                int existencias = rs.getInt("marExistencias");
-                double precios = rs.getDouble("marPrecios");
-                String estatus = rs.getString("marEstatus");
+                int id = rs.getInt("ID_EQUIPO");
+                String nombre = rs.getString("NOMBRE_EQUIPO");
+                int entrenadores = rs.getInt("ID_ENTRENADOR_FK");
+                int deportes = rs.getInt("ID_TIPO_DEPORTE_FK");
 
                 //aplicacion = new clsAplicacion();
-                marcas.setIdMarcas(id);
-                marcas.setNombreMarcas(nombre);
-                marcas.setExistenciasMarcas(existencias);
-                marcas.setPreciosMarcas(precios);
-                marcas.setEstatusMarcas(estatus);
-                System.out.println(" registro consultado: " + marcas);                
+                equipos.setIdEquipos(id);
+                equipos.setNombreEquipos(nombre);
+                equipos.setIdEntrenadores(entrenadores);
+                equipos.setIdDeportes(deportes);
+                System.out.println(" registro consultado: " + equipos);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -208,6 +200,6 @@ public class daoEquipo {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return marcas;
+        return equipos;
     }    
 }

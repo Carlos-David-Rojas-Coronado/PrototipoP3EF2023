@@ -59,7 +59,6 @@ public class MdiDeportivo extends javax.swing.JFrame {
         mnuCatalogosMantenimientos = new javax.swing.JMenu();
         mantenimientoTipoPuesto = new javax.swing.JMenuItem();
         mantenimientoEquipo = new javax.swing.JCheckBoxMenuItem();
-        mantenimientoEntrenador = new javax.swing.JCheckBoxMenuItem();
         mantenimientoPais = new javax.swing.JCheckBoxMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         mnuConsultas = new javax.swing.JMenu();
@@ -143,15 +142,6 @@ public class MdiDeportivo extends javax.swing.JFrame {
             }
         });
         mnuCatalogosMantenimientos.add(mantenimientoEquipo);
-
-        mantenimientoEntrenador.setSelected(true);
-        mantenimientoEntrenador.setText("Mantenimiento Entrenador");
-        mantenimientoEntrenador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoEntrenadorActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimientos.add(mantenimientoEntrenador);
 
         mantenimientoPais.setSelected(true);
         mantenimientoPais.setText("Mantenimiento Pais");
@@ -249,15 +239,6 @@ public class MdiDeportivo extends javax.swing.JFrame {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
     }//GEN-LAST:event_mantenimientoEquipoActionPerformed
 
-    private void mantenimientoEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoEntrenadorActionPerformed
-        // TODO add your handling code here:
-        frmEntrenador ventana = new frmEntrenador();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);   
-    }//GEN-LAST:event_mantenimientoEntrenadorActionPerformed
-
     private void mnuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultasActionPerformed
         // TODO add your handling code here:
          frmMantenimientoBitacora ventana = new frmMantenimientoBitacora();
@@ -350,7 +331,6 @@ public class MdiDeportivo extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JLabel lbl;
-    private javax.swing.JCheckBoxMenuItem mantenimientoEntrenador;
     private javax.swing.JCheckBoxMenuItem mantenimientoEquipo;
     private javax.swing.JCheckBoxMenuItem mantenimientoPais;
     private javax.swing.JMenuItem mantenimientoTipoPuesto;
